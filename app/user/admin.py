@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
+from django.apps import apps
 from django.utils.translation import gettext as _
 from .models import User
 
@@ -27,3 +28,8 @@ class UserAdmin(BaseUserAdmin):
 
 
 admin.site.register(User, UserAdmin)
+
+app = apps.get_app_config('graphql_auth')
+
+for _, model in app.models.items():
+    admin.site.register(model)

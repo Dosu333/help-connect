@@ -12,6 +12,10 @@ RUN apt-get update \
     && apt-get install -y gcc python3-dev musl-dev libmagic1 libffi-dev netcat-traditional \
     && pip install Pillow
 
+# Install git
+RUN apt-get install -y git && \
+    rm -rf /var/lib/apt/lists/*
+
 # Install dependencies
 COPY ./app/requirements.txt ./requirements.txt
 RUN pip install --upgrade pip
