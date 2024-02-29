@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'graphene_django',
     'graphql_jwt.refresh_token.apps.RefreshTokenConfig',
     'user',
+    'communityalert',
 ]
 
 AUTH_USER_MODEL = 'user.User'
