@@ -6,7 +6,7 @@ from graphene_django import DjangoObjectType
 from graphql_jwt.decorators import login_required
 from graphql_jwt.shortcuts import create_refresh_token, get_token
 from .resolvers import resolve_whoami, resolve_users
-# from .jwt import ObtainJSONWebToken
+from .jwt import ObtainJSONWebToken
 from user.adapters.persistence.implementation import DjangoUserRepository
 from user.adapters.persistence.entities import User
 
@@ -14,14 +14,6 @@ from user.adapters.persistence.entities import User
 class UserType(DjangoObjectType):
     class Meta:
         model = get_user_model()
-
-
-class ObtainJSONWebToken(graphql_jwt.JSONWebTokenMutation):
-    user = graphene.Field(UserType)
-
-    @classmethod
-    def resolve(cls, root, info, **kwargs):
-        return cls(user=info.context.user)
 
 
 class CreateUser(graphene.Mutation):
