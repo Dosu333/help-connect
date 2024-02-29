@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 from decouple import config
-from graphql_auth.settings import DEFAULTS
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -41,37 +40,28 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'graphene_django',
     'graphql_jwt.refresh_token.apps.RefreshTokenConfig',
-    'graphql_auth',
-    'django_filters',
     'user',
 ]
 
 AUTH_USER_MODEL = 'user.User'
 
 GRAPHENE = {
-    'SCHEMA': 'user.schema.schema',
+    'SCHEMA': 'user.adapters.graphql.schema.schema',
     'MIDDLEWARE': [
         'graphql_jwt.middleware.JSONWebTokenMiddleware'
     ],
       
 }
 
+GRAPHQL_JWT = {
+    'JWT_VERIFY_EXPIRATION': True,
+    "JWT_LONG_RUNNING_REFRESH_TOKEN": True,
+}
+
 AUTHENTICATION_BACKENDS = [
-    'graphql_auth.backends.GraphQLAuthBackend',
+    'graphql_jwt.backends.JSONWebTokenBackend',
     'django.contrib.auth.backends.ModelBackend',
 ]
-
-
-DEFAULTS['LOGIN_ALLOWED_FIELDS'] = ['email']
-DEFAULTS['REGISTER_MUTATION_FIELDS'] = ['email']
-DEFAULTS['USER_NODE_FILTER_FIELDS'] = {
-    'email': ['exact'],
-    'is_active': ['exact'],
-    'status__archived': ['exact'],
-    'status__verified': ['exact'],
-    'status__secondary_email': ['exact'],
-}
-GRAPHQL_AUTH = DEFAULTS
 
 
 MIDDLEWARE = [
@@ -120,6 +110,8 @@ DATABASES['default'] = {
     }
 
 # Email Settings
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 # EMAIL_FROM = config('SENDER_EMAIL')
 # EMAIL_HOST = config('SMTP_HOST', 'smtp.sendgrid.net')
 # EMAIL_HOST_USER = 'apikey'  # this is exactly the value 'apikey'

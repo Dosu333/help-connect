@@ -12,8 +12,8 @@ class UserCreationTestCase(TestCase):
     def test_user_creation(self):
         # Define the GraphQL mutation for creating a user
         mutation = '''
-        mutation CreateUser($fullname: String!, $email: String!, $password: String!) {
-            createUser(username: $username, email: $email, password: $password) {
+        mutation CreateUser($first_name: String!, $last_name: String!, $email: String!, $password: String!) {
+            createUser(first_name: $first_name, email: $email, password: $password) {
                 user {
                     id
                     username

@@ -1,11 +1,9 @@
 Django
 python-decouple
 graphene-django
-django-graphql-auth
-celery==5.2.7
-redis==4.3.4
-django-redis==5.2.0
-flower==1.1.0
-whitenoise
-python-decouple
+django-graphql-jwt
+celery
+redis
+django-redis
+flower
 psycopg2-binary

@@ -10,7 +10,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(
         max_length=255, unique=True, blank=True, null=True)
     password = models.CharField(max_length=225, null=True)
-    fullname = models.CharField(max_length=225, blank=True, null=True)
+    first_name = models.CharField(max_length=225, blank=True, null=True)
+    last_name = models.CharField(max_length=225, blank=True, null=True)
     image = models.FileField(upload_to='users/', blank=True, null=True)
     phone = models.CharField(max_length=17, blank=True, null=True)
     is_staff = models.BooleanField(default=False)
@@ -20,6 +21,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     verified = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'email'
+    EMAIL_FIELD = 'email'
     REQUIRED_FIELDS = []
 
     objects = CustomUserManager()

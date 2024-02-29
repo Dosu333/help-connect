@@ -7,12 +7,12 @@ from .models import User
 
 class UserAdmin(BaseUserAdmin):
     ordering = ['email']
-    list_display = ['email', 'fullname']
-    search_fields = ('id', 'email', 'fullname', 'phone')
+    list_display = ['email', 'first_name', 'last_name']
+    search_fields = ('id', 'email', 'first_name', 'lastname', 'phone')
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
         (_('Personal Info'), {
-            'fields': ('fullname', 'phone', 'image')}),
+            'fields': ('first_name', 'last_name', 'phone', 'image')}),
         (
             _('Permissions'),
             {'fields': ('is_active', 'is_staff', 'is_superuser', 'verified')}
@@ -22,14 +22,9 @@ class UserAdmin(BaseUserAdmin):
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('email', 'fullname', 'verified', 'password1', 'password2')
+            'fields': ('email', 'first_name', 'last_name', 'verified', 'password1', 'password2')
         }),
     )
 
 
 admin.site.register(User, UserAdmin)
-
-app = apps.get_app_config('graphql_auth')
-
-for _, model in app.models.items():
-    admin.site.register(model)
