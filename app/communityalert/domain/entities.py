@@ -1,6 +1,6 @@
 class CommunityAlert:
-    def __init__(self, author, content, **kwargs):
-        self.author = author,
+    def __init__(self, user_id, content, **kwargs):
+        self.author_id = user_id,
         self.content = content,
         self.media = kwargs.get('media', None),
         self.hashtags = kwargs.get('hashtags', None),
