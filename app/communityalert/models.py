@@ -4,11 +4,11 @@ from django.contrib.postgres.fields import ArrayField
 import uuid
 
 
-class BaseClass(models.Model):
+class BaseModel(models.Model):
     id = models.UUIDField(primary_key=True, editable=False, default=uuid.uuid4)
 
 
-class CommunityAlert(BaseClass):
+class CommunityAlert(BaseModel):
     author = models.ForeignKey(
         get_user_model(), on_delete=models.CASCADE, blank=True, null=True)
     content = models.TextField(blank=True, null=True)
