@@ -7,7 +7,7 @@ from graphql_jwt.decorators import login_required
 from graphql_jwt.shortcuts import create_refresh_token, get_token
 from .resolvers import resolve_whoami, resolve_users
 from .types import UserType
-from .mutations import CreateUser
+from user.interfaces.api.graphql.mutations.create_user import CreateUser
 from .jwt import ObtainJSONWebToken
 
 

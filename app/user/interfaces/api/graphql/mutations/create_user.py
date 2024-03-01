@@ -1,7 +1,7 @@
 import graphene
-from user.adapters.persistence.implementation import DjangoUserRepository
-from user.adapters.persistence.entities import User
-from .types import UserType
+from user.adapters.persistence.repositories import DjangoUserRepository
+from user.domain.entities import User
+from user.adapters.graphql.types import UserType
 
 
 class CreateUser(graphene.Mutation):
