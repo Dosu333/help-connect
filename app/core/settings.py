@@ -47,7 +47,6 @@ INSTALLED_APPS = [
 AUTH_USER_MODEL = 'user.User'
 
 GRAPHENE = {
-    'SCHEMA': 'user.adapters.graphql.schema.schema',
     'MIDDLEWARE': [
         'graphql_jwt.middleware.JSONWebTokenMiddleware'
     ],
