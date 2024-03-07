@@ -22,4 +22,5 @@ from graphene_django.views import GraphQLView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('user/', include('user.urls')),
+    path('community-alerts/', include('communityalert.urls')),
 ]
