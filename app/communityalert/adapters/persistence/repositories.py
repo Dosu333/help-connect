@@ -27,6 +27,10 @@ class DjangoCommunityAlertRepository(CommunityAlertRepository):
         community_alert = CommunityAlert.objects.get(id=community_alert_id)
         return community_alert
 
+    def get_by_location(self, location):
+        community_alerts = CommunityAlert.objects.filter(city=location)
+        return community_alerts
+
     def find_by_user(self, user_id):
         community_alerts = CommunityAlert.objects.filter(author__id=user_id)
         return community_alerts

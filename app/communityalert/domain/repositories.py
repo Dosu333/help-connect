@@ -8,6 +8,9 @@ class CommunityAlertRepository:
     def get_by_id(self, community_alert_id):
         raise NotImplementedError
 
+    def get_by_location(self, location):
+        raise NotImplementedError
+
     def find_by_user(self, user_id):
         raise NotImplementedError
 
