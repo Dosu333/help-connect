@@ -1,4 +1,6 @@
 from core.file_upload.upload import file_upload
+from communityalert.adapters.persistence.repositories import DjangoCommunityAlertRepository
+from communityalert.domain.entities import CommunityAlert
 
 def mutate_community_alert(info, file, content, city, state, country):
     """
@@ -19,4 +21,4 @@ def mutate_community_alert(info, file, content, city, state, country):
 
     community_alert = CommunityAlert(author_id=info.context.user.id, content=content, **data)
     new_community_alert = community_alert_repo.create(community_alert)
-    return CreateCommunityAlert(community_alert=new_community_alert, author=info.context.user)
+    return new_community_alert

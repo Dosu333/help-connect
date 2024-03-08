@@ -7,3 +7,4 @@ redis
 django-redis
 flower
 psycopg2-binary
+boto3
