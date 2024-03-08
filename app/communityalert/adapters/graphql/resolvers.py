@@ -1,6 +1,6 @@
 from communityalert.adapters.persistence.repositories import DjangoCommunityAlertRepository
 
-def resolve_retrieve_community_alert(self, info, id=None):
+def resolve_all_community_alerts(info, location):
         community_alert_repo = DjangoCommunityAlertRepository()
-        community_alert = community_alert_repo.get_by_id(id)
-        return community_alert
+        community_alerts = community_alert_repo.get_by_location(location)
+        return community_alerts

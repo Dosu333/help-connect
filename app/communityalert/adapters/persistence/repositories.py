@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from django.db.models import Q
 from communityalert.models import CommunityAlert
 from communityalert.domain.repositories import CommunityAlertRepository
 
@@ -28,7 +29,8 @@ class DjangoCommunityAlertRepository(CommunityAlertRepository):
         return community_alert
 
     def get_by_location(self, location):
-        community_alerts = CommunityAlert.objects.filter(city=location)
+        community_alerts = CommunityAlert.objects.filter(
+            (Q(city=location['city']) | Q(state=location['state'])) & Q(country=location['country']))
         return community_alerts
 
     def find_by_user(self, user_id):
