@@ -19,5 +19,5 @@ class CreateCommunityAlert(graphene.Mutation):
         country = graphene.String(required=True)
     
     @login_required
-    def mutate(self, info, content, city, state, country, media=None):
-        return mutate_community_alert(info, content, city, state, country, media)
+    def mutate(self, info, file,content, city, state, country):
+        return mutate_community_alert(info, file, content, city, state, country)
